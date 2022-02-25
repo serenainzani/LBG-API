@@ -1,16 +1,10 @@
-// import express
+// imports
 const express = require('express');
-
-//import nedb
 const Datastore = require('nedb');
-
-// import body-parser
 const bodyParser= require('body-parser');
 
-// set up the app
+// set up
 const app = express();
-
-// set up a new database
 const db = new Datastore();
 
 // add body-parsing functionality to the app
@@ -28,49 +22,33 @@ let id = 1;
 // Function to build an item
 // takes in a name, description and price
 let itemBuilder = (itemName, itemDescription, itemPrice, itemID) => {
-    // uses literal notation to create an item object
     let item = {
         name : itemName,
         description : itemDescription,
         price : itemPrice,
         _id : itemID
     }
-    // returns that item object
     return item;
 }
 
-// CREATE (Post)
 app.post('/create', (req,res) => {
-    // log that we are running the create operation
     console.log(`\nCreate - POST`);
-    // create an item from the request body
-    let item = itemBuilder(req.body.name, req.body.description, parseInt(req.body.price), parseInt(id));
-    // increment our id by one
+    let item = itemBuilder(req.body.name, req.body.description, req.body.price, parseInt(id));
     id++;
 
-    // insert the item into our Database
     db.insert(item, (err, item) => {
-        //if there is an error, send back the error
         if (err) res.send(err);
-        // otherwise 201 - Created and the item
         res.status(201).send(item);
-        //log that item to console
         console.log(`Created item: ${JSON.stringify(item)}`);
     });
 });
 
-// READ ALL (Get)
 app.get('/read', (req,res) => {
-    // log that we are running the read operation
     console.log(`\nRead - GET`);
 
-    // reading all items from database
     db.find({}, (err, items) => {
-        //if there is an error, send back the error
         if (err) res.send(err);
-        // otherwise 200 - OK
         res.status(200).send(items);
-        //log the items to console
         console.log(`Reading items: ${JSON.stringify(items)}`);
     });
 });
