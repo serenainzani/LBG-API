@@ -33,6 +33,7 @@ let itemBuilder = (itemName, itemDescription, itemPrice, itemID) => {
 
 app.post('/create', (req,res) => {
     console.log(`\nCreate - POST`);
+
     let item = itemBuilder(req.body.name, req.body.description, req.body.price, parseInt(id));
     id++;
 
