@@ -21,7 +21,11 @@ const get = () => {
         writeItem(response.data);
       } else {
         for (let item of response.data) {
-          writeItem(item);
+          console.log(parseFloat(item.price) < 1)
+          console.log("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
+          //let priceStr = parseFloat(item.price) < 1 ? `${item.price.slice(1)}p` : `£${item.price}`
+          let priceStr = parseFloat(item.price).toFixed(2)
+          writeItem(`<b>${item.name}</b>, ${item.description} for £${priceStr} (ID: ${item._id})`); 
         }
       }
     }).catch((err) => {
