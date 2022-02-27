@@ -21,8 +21,6 @@ const get = () => {
         writeItem(response.data);
       } else {
         for (let item of response.data) {
-          console.log(parseFloat(item.price) < 1)
-          console.log("ahhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh")
           //let priceStr = parseFloat(item.price) < 1 ? `${item.price.slice(1)}p` : `£${item.price}`
           let priceStr = parseFloat(item.price).toFixed(2)
           writeItem(`<b>${item.name}</b>, ${item.description} for £${priceStr} (ID: ${item._id})`); 
@@ -50,7 +48,9 @@ const post = () => {
 const getOne = () => {
   axios.get(`/read/${DOM.inputID.value}`)
     .then((response) => {
-      DOM.singleOutput.innerHTML = JSON.stringify(response.data);
+      let item = response.data[0] //JSON.stringify()
+      let priceStr = parseFloat(item.price).toFixed(2)
+      DOM.singleOutput.innerHTML = `<b>${item.name}</b>, ${item.description} for £${priceStr} (ID: ${item._id})`;
     }).catch((err) => {
       console.log(err);
     });
