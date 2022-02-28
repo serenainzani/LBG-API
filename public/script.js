@@ -7,7 +7,7 @@ import * as DOM from './dom.js';
 const writeItem = item => {
   const child = document.createElement(`li`);
   child.id = item._id;
-  child.innerHTML = `${JSON.stringify(item)}`;
+  child.innerHTML = `${item}`;
   DOM.listOutput.appendChild(child);
 }
 
