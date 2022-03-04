@@ -1,21 +1,23 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Hello') {
             steps {
-                sh "echo build"
+                sh "Testing Jenkins was triggered by a pull request..."
             }
         }
-        stage('Test') {
+        stage('Build image') {
             steps {
-                sh "echo test"
+                sh "echo building a docker image..."
+                sh "docker build -t serenainzani/lbg-api:latest ."
+                sh "built image!"
             }
         }
-        stage('Deploy') {
+        stage('Done') {
             steps {
-                sh "echo test"
-                sh "echo hi jenkins!"
+                sh "echo Finished!"
             }
+
         }
     }
 }
