@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        dockerImage = ''
+    }
     stages {
         stage('Hello') {
             steps {
@@ -9,15 +12,20 @@ pipeline {
         stage('Build image') {
             steps {
                 sh "echo building a docker image..."
-                sh "docker build -t serenainzani/lbg-api:latest ."
+                sh "dockerImage = docker.build serenainzani/lbg-api:latest"
                 sh "echo built image!"
             }
         }
+        stage('Deploy Image to DockerHub') {
+            steps {
+                sh "docker.withResgistery( '', 'serenainzani') { dockerImage.push() }"
+            }
+        }
+    
         stage('Done') {
             steps {
                 sh "echo Finished!"
             }
-
         }
     }
 }
