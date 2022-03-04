@@ -21,9 +21,7 @@ pipeline {
         stage('Build image') {
             steps {
                 sh "echo building a docker image..."
-                script {
-                    dockerImage = docker.build "serenainzani/lbg-api:latest"
-                }
+                sh "docker build -t serenainzani/lbg-api:latest ."
                 sh "echo built image!"
             }
         }
