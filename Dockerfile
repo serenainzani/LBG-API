@@ -1,4 +1,4 @@
-FROM serenainzanimea/LBG-API
+FROM node:14
 COPY ./package.json .
 RUN npm install
 COPY . .
