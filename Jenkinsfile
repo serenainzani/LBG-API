@@ -9,6 +9,13 @@ pipeline {
                 sh "echo Testing Jenkins was triggered by a pull request..."
             }
         }
+        //TODO - Adding tests
+        // stage('Test') {
+        //     steps {
+        //         sh "npm install"
+        //         sh "npm test"
+        //     }
+        // }
         stage('Build image') {
             steps {
                 sh "echo building a docker image..."
@@ -20,7 +27,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh "docker.withRegistry( '', 'dockerhub') { dockerImage.push() }"
+                sh "docker.withRegistry( 'https://hub.docker.com/repository/docker/serenainzani/lbg-api', 'serenainzani') { dockerImage.push() }"
             }
         }
     
