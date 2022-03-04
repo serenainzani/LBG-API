@@ -31,7 +31,6 @@ pipeline {
             steps {
                 sh "docker login -u serenainzani -p ${dockerhub_password}"
                 sh "docker push ${dockerImage}"
-                }
             }
         }
         stage('Done') {
