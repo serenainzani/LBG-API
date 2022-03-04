@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh "docker.withResgistery( '', 'serenainzani') { dockerImage.push() }"
+                sh "docker.withRegistry( '', 'serenainzani') { dockerImage.push() }"
             }
         }
     
