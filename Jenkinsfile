@@ -4,12 +4,7 @@ pipeline {
     }
     agent any
     stages {
-        stage('Hello') {
-            steps {
-                sh "echo Testing Jenkins was triggered by a pull request..."
-            }
-        }
-        stage('Test') {
+        stage('Testing') {
             steps {
                 sh "npm install"
                 sh "npm test"
@@ -26,11 +21,6 @@ pipeline {
             steps {
                 sh "echo ${dockerhub_password} | docker login -u serenainzani --password-stdin"
                 sh "docker push serenainzani/lbg-api:latest"
-            }
-        }
-        stage('Done') {
-            steps {
-                sh "echo Finished!!!!"
             }
         }
     }
