@@ -1,9 +1,6 @@
 pipeline {
     environment {
-        // registry = "serenainzani/lbg-api"
-        // registryCredential = 'dockerhub'
         dockerhub_password = credentials("dockerhub_password")
-        // dockerImage = ''
     }
     agent any
     stages {
@@ -27,7 +24,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh "docker login -u serenainzani -p ${dockerhub_password}"
+                sh "echo ${dockerhub_password} | docker login -u serenainzani --password-stdin"
                 sh "docker push serenainzani/lbg-api:latest"
             }
         }
