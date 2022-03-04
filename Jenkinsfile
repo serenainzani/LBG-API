@@ -29,9 +29,8 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                script {
-                    docker login -u serenainzani -p ${dockerhub_password}
-                    docker push ${dockerImage}
+                sh "docker login -u serenainzani -p ${dockerhub_password}"
+                sh "docker push ${dockerImage}"
                 }
             }
         }
