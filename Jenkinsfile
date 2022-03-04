@@ -33,7 +33,6 @@ pipeline {
                 script {
                     docker login -u serenainzani -p ${DOCKER_PASSWORD}
                     docker push ${dockerImage}
-                    }
                 }
             }
         }
