@@ -1,5 +1,7 @@
 pipeline {
     environment {
+        registry = "serenainzani/lbg-api"
+        registryCredential = 'dockerhub'
         dockerImage = ''
     }
     agent any
@@ -27,7 +29,7 @@ pipeline {
         stage('Deploy Image to DockerHub') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/repository/docker/serenainzani/lbg-api', 'serenainzani') { 
+                    docker.withRegistry('', 'registryCredential') { 
                         dockerImage.push() 
                     }
                 }
