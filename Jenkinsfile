@@ -3,14 +3,14 @@ pipeline {
     stages {
         stage('Hello') {
             steps {
-                sh "Testing Jenkins was triggered by a pull request..."
+                sh "echo Testing Jenkins was triggered by a pull request..."
             }
         }
         stage('Build image') {
             steps {
                 sh "echo building a docker image..."
                 sh "docker build -t serenainzani/lbg-api:latest ."
-                sh "built image!"
+                sh "echo built image!"
             }
         }
         stage('Done') {
