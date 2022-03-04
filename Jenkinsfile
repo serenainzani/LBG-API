@@ -18,7 +18,7 @@ pipeline {
         stage('Build image') {
             steps {
                 sh "echo building a docker image..."
-                script{
+                script {
                     dockerImage = docker.build "serenainzani/lbg-api:latest"
                 }
                 sh "echo built image!"
@@ -26,10 +26,13 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh "docker.withRegistry( 'https://hub.docker.com/repository/docker/serenainzani/lbg-api', 'serenainzani') { dockerImage.push() }"
+                script {
+                    docker.withRegistry('https://hub.docker.com/repository/docker/serenainzani/lbg-api', 'serenainzani') { 
+                        dockerImage.push() 
+                    }
+                }
             }
         }
-    
         stage('Done') {
             steps {
                 sh "echo Finished!!!!!"
