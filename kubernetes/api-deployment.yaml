@@ -8,8 +8,8 @@ spec:
     app: api
   ports:
   - protocol: TCP
-    port: 4000
-    targetPort: 4000
+    port: 5000
+    targetPort: 5000
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -18,7 +18,7 @@ metadata:
   labels:
     app: api
 spec:
-  replicas: 10
+  replicas: 3
   selector:
     matchLabels:
       app: api
@@ -35,4 +35,4 @@ spec:
       - name: api
         image: serenainzani/lbg-api:latest
         ports:
-        - containerPort: 4000
+        - containerPort: 5000
