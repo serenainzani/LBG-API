@@ -33,7 +33,7 @@ pipeline {
                 kubectl apply -f ./kubernetes/api-deployment.yaml
                 '''
             }
-
+        }
         stage('Cleanup!') {
             steps {
                 sh 'docker system prune'
