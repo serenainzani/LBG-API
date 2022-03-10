@@ -20,7 +20,7 @@ data:
     server {
         listen 80;
         location / {
-            proxy_pass "http://api-service:4000";
+            proxy_pass "http://api-service:5000";
         }
     }
 ---
