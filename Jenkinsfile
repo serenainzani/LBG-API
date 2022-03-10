@@ -1,6 +1,6 @@
 pipeline {
     environment {
-        dockerhub_password = credentials("dockerhub_password")
+        DOCKERHUB_PASSWORD = credentials("dockerhub_password")
     }
     agent any
     stages {
@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh("docker login -u serenainzani -p "+$dockerhub_password)
+                sh("docker login -u serenainzani --password $DOCKERHUB_PASSWORD")
                 sh("docker push serenainzani/lbg-api:latest")
             }
         }
