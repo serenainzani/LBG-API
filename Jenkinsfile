@@ -19,10 +19,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh('logging into serenainzani docker hub...')
                 sh('docker login -u serenainzani -p $DOCKERHUB_PASSWORD')
-                sh('Logged in!')
-                sh('Pushing image to docker hub...')
                 sh('docker push serenainzani/lbg-api:build-$BUILD_NUMBER')
             }
         }
