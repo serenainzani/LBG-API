@@ -19,7 +19,7 @@ pipeline {
         }
         stage('Deploy Image to DockerHub') {
             steps {
-                sh("docker login -u serenainzani -p ${dockerhub_password}")
+                sh("docker login -u serenainzani -p "+$dockerhub_password)
                 sh("docker push serenainzani/lbg-api:latest")
             }
         }
