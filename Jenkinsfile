@@ -25,10 +25,9 @@ pipeline {
         }
         stage('Deploy image to GCR on GCP') {
             steps {
-                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:latest')
+                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:$BUILD_NUMBER')
                 sh('docker images')
-                sh('docker push gcr.io/lbg-210222/serena-lbg-api:latest')
-
+                sh('docker push gcr.io/lbg-210222/serena-lbg-api:$BUILD_NUMBER')
             }
         }
         stage('Create Kubernetes Cluster from GCP') {
