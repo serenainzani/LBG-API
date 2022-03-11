@@ -32,9 +32,9 @@ pipeline {
         }
         stage('Deploy image to GCR on GCP') {
             steps {
-                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:build-$DOCKERHUB_PASSWORD')
+                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:build-$BUILD_NUMBER')
                 sh('docker images')
-                sh('docker push gcr.io/lbg-210222/serena-lgit bg-api:build-$DOCKERHUB_PASSWORD')
+                sh('docker push gcr.io/lbg-210222/serena-lgit bg-api:build-$BUILD_NUMBER')
 
             }
         }
