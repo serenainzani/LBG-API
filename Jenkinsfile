@@ -23,7 +23,7 @@ pipeline {
                 sh('docker push serenainzani/lbg-api:build-$BUILD_NUMBER')
             }
         }
-        stage('Create Kubernetes Cluster') {
+        stage('Create Kubernetes Cluster from GCP') {
             steps {
                 sh '''kubectl apply -f ./kubernetes/nginx.yaml
                 kubectl apply -f ./kubernetes/api-deployment.yaml
@@ -40,7 +40,7 @@ pipeline {
         }
         stage('Cleanup!') {
             steps {
-                sh 'docker system prune'
+                sh 'docker system -f prune'
             }
         }
     }
