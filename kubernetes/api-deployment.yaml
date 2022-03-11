@@ -33,6 +33,6 @@ spec:
     spec:
       containers:
       - name: api
-        image: serenainzani/lbg-api:latest
+        image: gcr.io/lbg-210222/serena-lbg-api:latest
         ports:
         - containerPort: 5000
