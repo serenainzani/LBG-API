@@ -35,7 +35,7 @@ pipeline {
                 '''
             }
         }
-        stage('Cleanup!') {
+        stage('Cleanup') {
             steps {
                 sh 'docker rmi gcr.io/lbg-210222/serena-lbg-api:build-$BUILD_NUMBER'
                 sh 'docker rmi gcr.io/lbg-210222/serena-lbg-api:latest'
