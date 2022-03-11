@@ -23,19 +23,19 @@ pipeline {
                 sh('docker push serenainzani/lbg-api:build-$BUILD_NUMBER')
             }
         }
+        stage('Deploy image to GCR on GCP') {
+            steps {
+                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:latest')
+                sh('docker images')
+                sh('docker push gcr.io/lbg-210222/serena-lbg-api:latest')
+
+            }
+        }
         stage('Create Kubernetes Cluster from GCP') {
             steps {
                 sh '''kubectl apply -f ./kubernetes/nginx.yaml
                 kubectl apply -f ./kubernetes/api-deployment.yaml
                 '''
-            }
-        }
-        stage('Deploy image to GCR on GCP') {
-            steps {
-                sh('docker tag serenainzani/lbg-api:build-$BUILD_NUMBER gcr.io/lbg-210222/serena-lbg-api:build-$BUILD_NUMBER')
-                sh('docker images')
-                sh('docker push gcr.io/lbg-210222/serena-lbg-api:build-$BUILD_NUMBER')
-
             }
         }
         stage('Cleanup!') {
